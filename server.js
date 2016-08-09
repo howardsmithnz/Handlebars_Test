@@ -19,7 +19,10 @@ app.set('views', __dirname + '/views')
 // })
 
 app.get('/', function (req, res) {
-  res.render('index')
+  var luckyNumber = Math.round(Math.random() * 10)
+  res.render('index', {
+    luckyNumber: luckyNumber
+  })
 })
 
 app.listen(3001, function () {

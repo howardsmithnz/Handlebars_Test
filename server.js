@@ -19,6 +19,7 @@ app.set('views', __dirname + '/views')
 // })
 
 app.get('/', function (req, res) {
+  console.log('GET request received on /')
   var luckyNumber = Math.round(Math.random() * 10)
   res.render('index', {
     luckyNumber: luckyNumber

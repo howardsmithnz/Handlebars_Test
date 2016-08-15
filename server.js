@@ -1,18 +1,10 @@
 var express = require('express')
-var hbs = require('express-hbs')
+var exphbs = require('express-handlebars')
 
 var app = express()
 
-app.use('/public', express.static('public'))
-
-// Use `.hbs` for extensions and find partials in `views/partials`.
-app.engine('hbs', hbs.express4({
-  defaultLayout: __dirname + '/views/layouts/default.hbs',
-  partialsDir: __dirname + '/views/partials',
-  layoutsDir: __dirname + '/views/layouts'
-}))
-app.set('view engine', 'hbs')
-app.set('views', __dirname + '/views')
+app.engine('handlebars', exphbs({defaultLayout: 'main'}))
+app.set('view engine', 'handlebars')
 
 // app.get('/', function (req, res) {
 //   res.send('Welcome to a Handlebars test app')
@@ -21,7 +13,7 @@ app.set('views', __dirname + '/views')
 app.get('/', function (req, res) {
   console.log('GET request received on /')
   var luckyNumber = Math.round(Math.random() * 10)
-  res.render('index', {
+  res.render('home', {
     luckyNumber: luckyNumber
   })
 })

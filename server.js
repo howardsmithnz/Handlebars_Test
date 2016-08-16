@@ -9,16 +9,19 @@ app.engine('.hbs', exphbs({
 }))
 app.set('view engine', '.hbs')
 
-// app.get('/', function (req, res) {
-//   res.send('Welcome to a Handlebars test app')
-// })
-
 app.get('/', function (req, res) {
   console.log('GET request received on /')
   var luckyNumber = Math.round(Math.random() * 10)
+  var trees = ['Rimu', 'Miro', 'Kahikatea']
+
   res.render('home', {
-    luckyNumber: luckyNumber
+    luckyNumber: luckyNumber,
+    trees: trees
   })
+})
+
+app.get('/about', function (req, res) {
+  res.render('about')
 })
 
 app.listen(3001, function () {
